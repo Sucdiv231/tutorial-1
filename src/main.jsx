@@ -9,7 +9,7 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <App /> */}
     {/* <App /> */}
-    <ToDoList />
-    {/* <TodoList2 /> */}
+    {/* <ToDoList /> */}
+    <TodoList2 />
   </StrictMode>
 );
