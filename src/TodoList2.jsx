@@ -63,7 +63,7 @@ export default function TodoList2() {
   //   }
   // }
   return (
-    <div className="overflow-y-scroll py-6 bg-blue-200 min-h-screen flex flex-col items-center justify-center">
+    <div className="overflow-y-scroll py-6 bg-blue-200 min-h-screen max-w-[80] lg:max-w-auto flex flex-col items-center justify-center">
       <div className="p-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white rounded-lg shadow-lg">
         <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800">
           To-Do List
