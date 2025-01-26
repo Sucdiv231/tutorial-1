@@ -64,21 +64,24 @@ export default function TodoList2() {
   // }
   return (
     <div className="overflow-y-scroll py-6 bg-blue-200 min-h-screen flex flex-col items-center justify-center">
-      <div className="p-6 max-w-sm w-full bg-white rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center text-gray-800">
+      <div className="p-6 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gray-800">
           To-Do List
         </h1>
-        <form onSubmit={addTask} className="flex gap-2 mb-4">
+        <form
+          onSubmit={addTask}
+          className="flex flex-col sm:flex-row gap-2 mb-4"
+        >
           <input
             type="text"
             placeholder="Enter task"
             value={task}
             onChange={(e) => setTask(e.target.value)}
-            className="py-2 px-4 border border-2 border-blue-400"
+            className="py-2 px-4 w-full sm:w-auto flex-1 border border-2 border-blue-400 rounded-md"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-300 hover:opacity-60 transition duration-500"
+            className="px-4 py-2 w-full sm:w-auto bg-gradient-to-r from-blue-400 via-purple-500 to-pink-300 rounded-md hover:opacity-80 transition duration-500"
           >
             Add
           </button>
@@ -88,7 +91,7 @@ export default function TodoList2() {
           {Tasks.map((task, index) => (
             <li
               key={index}
-              className="flex justify-between items-center mb-4 p-3 bg-gray-100 rounded-lg shadow-sm"
+              className="flex flex-col sm:flex-row justify-between items-center mb-4 p-3 bg-gray-100 rounded-lg shadow-sm"
             >
               {isEditing === index ? (
                 <input
@@ -96,39 +99,43 @@ export default function TodoList2() {
                   value={editedTask}
                   onChange={(e) => setEditedTask(e.target.value)}
                   placeholder="Edit here"
-                  className="flex-1 border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                  className="flex-1 w-full sm:w-auto border border-gray-300 rounded-lg p-2 mb-2 sm:mb-0 focus:outline-none focus:ring-2 focus:ring-blue-400"
                 />
               ) : (
-                <span className="overflowTask overflow-x-scroll">{task}</span>
+                <span className="overflowTask overflow-x-scroll break-words w-full sm:w-auto">
+                  {task}
+                </span>
               )}
 
-              {isEditing === index ? (
-                <button className="flex gap-4 px-3">
-                  <AiOutlineSave
-                    size={20}
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => saveTask(index)}
-                  />
-                  <AiOutlineDelete
-                    size={20}
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => deleteTask(index)}
-                  />
-                </button>
-              ) : (
-                <button className="flex gap-4 px-3">
-                  <AiOutlineEdit
-                    size={20}
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => editTasks(index, task)}
-                  />
-                  <AiOutlineDelete
-                    size={20}
-                    className="text-red-500 hover:text-red-700"
-                    onClick={() => deleteTask(index)}
-                  />
-                </button>
-              )}
+              <div className="flex gap-4 mt-2 sm:mt-0">
+                {isEditing === index ? (
+                  <>
+                    <AiOutlineSave
+                      size={20}
+                      className="text-red-500 hover:text-red-700 cursor-pointer"
+                      onClick={() => saveTask(index)}
+                    />
+                    <AiOutlineDelete
+                      size={20}
+                      className="text-red-500 hover:text-red-700 cursor-pointer"
+                      onClick={() => deleteTask(index)}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <AiOutlineEdit
+                      size={20}
+                      className="text-red-500 hover:text-red-700 cursor-pointer"
+                      onClick={() => editTasks(index, task)}
+                    />
+                    <AiOutlineDelete
+                      size={20}
+                      className="text-red-500 hover:text-red-700 cursor-pointer"
+                      onClick={() => deleteTask(index)}
+                    />
+                  </>
+                )}
+              </div>
             </li>
           ))}
 
